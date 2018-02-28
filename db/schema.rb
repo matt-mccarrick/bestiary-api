@@ -10,24 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223055919) do
+ActiveRecord::Schema.define(version: 20180227055011) do
+
+  create_table "abilities", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "recharge"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "abilities_monsters", id: false, force: :cascade do |t|
+    t.integer "monster_id", null: false
+    t.integer "ability_id", null: false
+  end
 
   create_table "attacks", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
+    t.string "recharge"
   end
 
   create_table "attacks_monsters", id: false, force: :cascade do |t|
     t.integer "monster_id", null: false
     t.integer "attack_id", null: false
-    t.index ["monster_id", nil], name: "index_attacks_monsters_on_monster_id_and_user_id"
   end
 
   create_table "monsters", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "intelligence"
+    t.integer "charisma"
+    t.integer "wisdom"
+    t.integer "strength"
+    t.integer "dexterity"
+    t.integer "constitution"
+    t.integer "ac"
+    t.integer "hitpoints"
+    t.integer "cr"
   end
 
 end
